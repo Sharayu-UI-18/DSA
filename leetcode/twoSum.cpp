@@ -1,4 +1,4 @@
-// Two Sum
+// TwoSum
 //Problen link: https://leetcode.com/problems/two-sum/description/
 
 
