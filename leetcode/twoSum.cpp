@@ -1,44 +1,40 @@
-// TwoSum
-//Problen link: https://leetcode.com/problems/two-sum/description/
+//TwoSum: leetcode problem 1
+//Given an array of integers nums and an integer target, return indices of the two numbers such that they add up to target.
+//https://leetcode.com/problems/two-sum/description/
 
-
-#include <iostream>
-#include <vector>
-using namespace std;
-
+//brute force approach: time-O(n²) space-O(1)
 class Solution {
-public:
-    vector<int> twoSum(vector<int>& nums, int target) {
-        // Check every possible pair of numbers
-        for (int i = 0; i < nums.size(); i++) {
-            for (int j = i + 1; j < nums.size(); j++) {
-                if (nums[i] + nums[j] == target) {
-                    // Return their indices if they add up to the target
-                    return {i, j};
+    public int[] twoSum(int[] nums, int target) {
+        for(int i=0; i<nums.length; i++){
+            for(int j=i+1; j<nums.length; j++){
+                if(target==nums[i]+nums[j]){
+                    return new int[]{i,j}; //syntax for returning value in java
                 }
             }
         }
-        // This line executes only if no solution is found (which won’t happen here)
-        return {};
+        return new int[]{};
     }
-};
+}
 
-int main() {
-    Solution obj;
+//hashmap approach: time-O(n) space-O(n)
+import java.util.HashMap;
 
-    // Example input
-    vector<int> nums = {2, 7, 11, 15};
-    int target = 9;
+class Solution {
+    public int[] twoSum(int[] nums, int target) {
 
-    // Call the function
-    vector<int> result = obj.twoSum(nums, target);
+        HashMap<Integer, Integer> map = new HashMap<>();
 
-    // Print the result
-    cout << "Indices: ";
-    for (int index : result) {
-        cout << index << " ";
+        for (int i = 0; i < nums.length; i++) {
+
+            int needed = target - nums[i];
+
+            if (map.containsKey(needed)) {
+                return new int[]{map.get(needed), i};
+            }
+
+            map.put(nums[i], i);
+        }
+
+        return new int[]{};
     }
-    cout << endl;
-
-    return 0;
 }
